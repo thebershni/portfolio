@@ -1,0 +1,12 @@
+(()=>{
+const $=s=>document.querySelector(s), projects=window.PROJECTS||[], categories=['All','Visual Branding','Social Media','UX Design','Print Graphic Design','Logo Design','Motion & AI'];
+const grid=$('#projectGrid'),filters=$('#filters'),empty=$('#emptyState'),count=$('#resultCount');let active='All';
+const pageFor=p=>'project-pages/'+p.slug+'.html';
+filters.innerHTML=categories.map(c=>`<button class="filter-btn${c==='All'?' active':''}" type="button" data-filter="${c}">${c}</button>`).join('');
+function render(){const shown=active==='All'?projects:projects.filter(p=>p.category===active);count.textContent=`${shown.length} ${shown.length===1?'project':'projects'}`;empty.hidden=shown.length>0;grid.innerHTML=shown.map((p,i)=>`<a class="project-tile" href="${pageFor(p)}" style="--project-accent:${p.accent}"><div class="tile-image"><img src="${p.cover}" alt="${p.title}" loading="lazy"><span class="tile-arrow">↗</span></div><div class="tile-meta"><div><span class="mono">${p.category}</span><h2>${p.title}</h2><p>${p.kind}</p></div><span class="tile-number">${String(i+1).padStart(2,'0')}</span></div></a>`).join('');}
+filters.addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;active=b.dataset.filter;filters.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()});render();
+const theme=$('#theme'),root=document.documentElement;theme?.addEventListener('click',()=>{const t=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('theme',t)}catch(e){};document.querySelector('meta[name=theme-color]')?.setAttribute('content',t==='dark'?'#0e0e13':'#f4f1e8')});$('#yr').textContent=new Date().getFullYear();
+})();
+
+// Original custom cursor behavior, shared with the homepage.
+(()=>{const cur=document.getElementById('cur'),label=document.getElementById('curT');if(!cur||!matchMedia('(pointer:fine)').matches)return;let x=0,y=0,cx=0,cy=0;addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY});(function loop(){cx+=(x-cx)*.22;cy+=(y-cy)*.22;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop)})();document.addEventListener('pointerover',e=>{const target=e.target.closest('a,button,.project-tile,.detail-image');cur.classList.toggle('h',!!target);const visual=e.target.closest('.project-tile,.detail-image');cur.classList.toggle('v',!!visual);if(label)label.textContent=visual?'View':''})})();
