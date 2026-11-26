@@ -324,7 +324,7 @@ window.PROJECTS = [
     "kind": "Marketing · Social",
     "cover": "assets/banner.webp",
     "accent": "#ff4f7b",
-    "summary": "A social media banner and campaign visual retained from the original portfolio. Additional campaign artwork can be added to expand this case study.",
+    "summary": "A social media banner and campaign visual.",
     "services": [
       "Social media design",
       "Marketing visuals"
