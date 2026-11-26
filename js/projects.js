@@ -338,7 +338,7 @@ window.PROJECTS = [
     "category": "Motion & AI",
     "kind": "AI Storytelling · Video",
     "cover": "assets/yeezy.webp",
-    "behanceUrl": "https://www.behance.net/gallery/252725317",
+    "behanceUrl": "https://www.behance.net/gallery/252725317/Yeezy-Boost-350-AI-Storytelling-Video",
     "accent": "#ff6b2c",
     "summary": "An AI storytelling and motion concept Inspired by my favourite shoes, Yeezy Boost 350, I created a video using AI telling the story of this iconic pair of shoes.",
     "services": [
